@@ -35,10 +35,11 @@ public class Main {
                 int y = e.getY()/min;
                 System.out.println(x+" "+y);
                 if(x>2 || y>2) return;
-                game.turn(new TicTacToeTurn(game.next(),x,y));
-                MiniMax smartBoii = new MiniMax();
-                Turn t = smartBoii.miniMax(game);
-                if(t!=null) game.turn(t);
+                if (game.turn(new TicTacToeTurn(game.next(),x,y))) {
+                    MiniMax smartBoii = new MiniMax();
+                    Turn t = smartBoii.miniMax(game);
+                    if (t != null) game.turn(t);
+                }
                 panel.repaint();
             }
 

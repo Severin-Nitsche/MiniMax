@@ -34,20 +34,21 @@ public class TicTacToe extends Game implements Viewable {
         if(!turn.player.getClass().equals(next().getClass())) throw new IllegalArgumentException("Expected "+turn.player+" in "+t+" to be of Type "+next().getClass());
         if(board[turn.x][turn.y] != null) return false;
         if(!turn.player.isEqual(next())) return false;
+        if(gameState().isTerminal()) return false;
         board[turn.x][turn.y] = turn.player;
         next = next.next();
         return true;
     }
 
     @Override
-    public Collection<Turn> possibleMoves() {
+    public Collection<TicTacToeTurn> possibleMoves() {
         ArrayList<TicTacToeTurn> turns = new ArrayList<>();
         for(int x = 0; x<board.length; x++) {
             for(int y = 0; y<board[x].length; y++) {
                 if(board[x][y]==null) turns.add(new TicTacToeTurn(next(),x,y));
             }
         }
-        return (Collection)turns;
+        return turns;
     }
 
     @Override

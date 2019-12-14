@@ -8,7 +8,7 @@ import java.util.Collection;
 public abstract class Game {
     public abstract boolean turn(Turn t);
 
-    public abstract Collection<Turn> possibleMoves();
+    public abstract Collection<? extends Turn> possibleMoves();
 
     /**
      *

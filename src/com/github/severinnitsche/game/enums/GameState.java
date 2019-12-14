@@ -5,7 +5,7 @@ public enum GameState {
 
     public boolean equal(GameState o) {
         //condition
-        switch(((GameState)o)) {
+        switch(o) {
             case NOTLOST:
             case NOTWON:
                 return (this==NOTLOST||this==NOTWON);
@@ -16,8 +16,8 @@ public enum GameState {
 
     /**
      *
-     * @param o
-     * @return wether this is worse than o
+     * @param o The GameState to compare this to
+     * @return whether this is worse than o
      */
     public boolean isWorseThan(GameState o) {
         switch(this) {
@@ -42,6 +42,21 @@ public enum GameState {
                 return WON;
             default:
                 return this;
+        }
+    }
+
+    public boolean isTerminal() {
+        switch(this) {
+            case TIE:
+            case WON:
+            case LOST:
+                return true;
+            case NOTWON:
+            case NOTLOST:
+            case UNDETERMINED:
+                return false;
+            default:
+                throw new IllegalStateException("Unexpected value: " + this);
         }
     }
 }
